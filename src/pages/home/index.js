@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { View, Text, Dimensions, StyleSheet, SafeAreaView, TouchableOpacity } from 'react-native';
-import { TextInput } from "react-native";
+import { AntDesign } from '@expo/vector-icons';
 import { colors, fonts } from "../../styles";
 import { Ionicons } from '@expo/vector-icons';
 const { width, height } = Dimensions.get('window');
@@ -29,13 +29,30 @@ const HomeScreen = () => {
           /> */}
         </View>
       </>
-      <View style={{ alignItems: 'center',height:'100%' }}>
+      <View style={{ alignItems: 'center', height: '100%' }}>
         {/* Card */}
         <View style={styles.cardItem}>
-          <View style={{marginLeft:width*0.04,justifyContent:'space-between'}}>
-            <Text style={{fontFamily:fonts.Regular,fontSize:24,marginVertical:10}}>Blumenau</Text>
-            <Text style={{fontFamily:fonts.Regular,fontSize:20}}>Brasil</Text>
-            <Text style={{fontFamily:fonts.Medium,color:colors.blue,fontSize:20,marginTop:height*0.05,marginLeft:width*.04}}>Adicionar</Text>
+          <View style={{ width: '50%' }} >
+            <View style={{ marginLeft: width * 0.04, justifyContent: 'space-between' }}>
+              <Text style={{ fontFamily: fonts.Regular, fontSize: 30, marginVertical: 10 }}>Blumenau</Text>
+              <Text style={{ fontFamily: fonts.Regular, fontSize: 20 }}>Brasil</Text>
+
+                <>
+                {/* condicional para informacao do tempo  */}
+              <Text style={{ fontFamily: fonts.Regular, fontSize: 20,color:colors.orange }}>Chuva fraca</Text>
+              <Text style={{ fontFamily: fonts.Regular, fontSize: 20,color:colors.black }}>14º - 22º</Text>
+              </>
+
+              {/* <Text style={{ fontFamily: fonts.Medium, color: colors.blue, fontSize: 20, marginTop: height * 0.05, marginLeft: width * .04 }}>Adicionar</Text> */}
+            </View>
+          </View>
+
+          <View style={[{ width: '50%'},{justifyContent:'center'}]}>
+
+            <View style={{ justifyContent: 'space-between',right:width * 0.04, position:'absolute' }}>
+              <Text style={{ fontFamily: fonts.Regular, fontSize: 30, color: colors.orange,marginVertical:25 }}>18º</Text>
+              <AntDesign name="hearto" size={20} color={colors.red} />
+            </View>
           </View>
         </View>
       </View>
@@ -79,16 +96,19 @@ const styles = StyleSheet.create({
   },
   textSubtitle: { fontFamily: fonts.Regular, fontSize: 16, color: colors.textGray },
 
-  cardItem:{ backgroundColor: '#f5f5f5', 
-  borderRadius:width*0.01,
-  width: (width * 96)/100, 
-  height: (height*20)/100,
-  shadowColor: '#000',
-  shadowOffset: { width: 0, height: 1 },
-  shadowOpacity: 0.4,
-  shadowRadius: 2,
-  elevation: 2,marginTop:10 }
+  cardItem: {
+    backgroundColor: '#f5f5f5',
+    borderRadius: width * 0.01,
+    width: (width * 96) / 100,
+    height: (height * 20) / 100,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.4,
+    shadowRadius: 2,
+    elevation: 2, marginTop: 10,
 
+    flexDirection: 'row'
+  },
 })
 
 export default HomeScreen;
