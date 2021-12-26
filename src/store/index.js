@@ -1,22 +1,16 @@
 import { createStore,  } from 'redux';
+import rootReducers from './reducers'
+import { persistStore, persistReducer } from 'redux-persist';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const INITIAL_STATE = {
-    user: '',
-    password: '',
+const persistConfig = {
+  key: 'root',
+  storage:AsyncStorage,
 };
 
-function weather(state = INITIAL_STATE, action) {
-    switch (action.type) {
-        case 'SET_USER':
-          return  {...state,user:action.user};
-         
-          case 'SET_TOKEN':
-            return  {...state,password:action.password};
-          default:
-            return state;
-        }
+const persistedReducer = persistReducer(persistConfig, rootReducers)
 
-}
-const store = createStore(weather)
+const store = createStore(persistedReducer)
+const persistor = persistStore(store)
 
-export default store
+export  {store, persistor}
